@@ -4,14 +4,15 @@ const Schema = mongoose.Schema;
 const photoSchema = new Schema({
   title: {
     type: String,
-  },
-  Image: {
-    type: String,
     required: true,
   },
+  image: {
+    data: Buffer,  // Store image as binary data (Buffer)
+    contentType: String,  // Store MIME type of the image (e.g., image/jpeg)
+  },
   uploadedBy: {
-    type:Schema.Types.ObjectId,
-    ref: "User", 
+    type: Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   createdAt: {

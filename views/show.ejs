@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row  p-4">
+  <div class="col-md-8 offset-md-2">
+    <div class="card "style="height: 20rem; width:40rem;">
+      <img src="/photos/<%= photo._id %>/image"  alt="<%= photo.title %> "style="height: 20rem; width:100%;">
+      <div class="card-body p-4">
+        <h3 class="card-title"><%= photo.title %></h3>
+        <p class="card-text">
+          <small class="text-muted">Uploaded by: <%= photo.uploadedBy.username %></small>
+        </p>
+        
+        <% if (currentUser && photo.uploadedBy.equals(currentUser._id)) { %>
+          <div class="d-flex gap-2">
+            <a href="/photos/<%= photo._id %>/edit" class=" btn btn-com">Edit</a>
+            <form action="/photos/<%= photo._id %>?_method=DELETE" method="POST" class="d-inline">
+              <button class="btn btn-danger">
+                Delete
+              </button>
+            </form>
+          </div>
+        <% } %>
+        
+        <!-- <a href="/photos" class="btn btn-secondary mt-3">Back to All Photos</a> -->
+      </div>
+    </div>
+  </div>
+</div>

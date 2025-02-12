@@ -1,10 +1,30 @@
 <% layout('layouts/boilerplate') %>
+<style>
 
-<h1>All Photos</h1>
-<a href="/new" class="btn btn-primary mb-4">Create New Blog</a>
+h1{
+  color: #4B164C;
+}
 
+</style>
+<h1  class="mt-4">Photos</h1>
 
+<% if (currentUser) { %>
+  <a href="/photos/new" class="btn btn-primary mb-4">Upload New Photo</a>
+<% } %>
 
-
-
-
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% photos.forEach(photo => { %>
+    <div class="col">
+      <div class="card h-100">
+        <img src="/photos/<%= photo._id %>/image" class="card-img-top" alt="<%= photo.title %>" style="height: 20rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= photo.title %></h5>
+          <p class="card-text">
+            <small class="text-muted">Uploaded by: <b><%= photo.uploadedBy.username %></b> </small>
+          </p>
+          <a href="/photos/<%= photo._id %>" class=" btn btn-com">View Details</a>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>

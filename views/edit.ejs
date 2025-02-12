@@ -1,0 +1,43 @@
+<% layout('layouts/boilerplate') %>
+<style>
+h1{
+  color: #4B164C;
+}
+
+</style>
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h1 class="mb-4">Edit Photo</h1>
+
+    <form action="/photos/<%= photo._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="title" 
+          name="title" 
+          value="<%= photo.title %>" 
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Current Image</label>
+        <img src="/photos/<%= photo._id %>/image" class="img-fluid mb-2" alt="<%= photo.title %>">
+        <input 
+          type="file" 
+          class="form-control" 
+          id="image" 
+          name="image" 
+          accept="image/*"
+        >
+      </div>
+
+      <div class="mt-3">
+        <button type="submit" class="btn btn-success">Update Photo</button>
+        <a href="/photos/<%= photo._id %>" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

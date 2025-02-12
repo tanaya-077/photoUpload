@@ -11,7 +11,8 @@ const flash = require("connect-flash");
 const User = require("./models/user.js");
 const photoRoutes = require("./routes/photos");
 const userRoutes = require("./routes/users"); 
-
+const Photo = require("./models/Photo.js");
+const multer = require("multer");
 // Connect to MongoDB
 async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/photo');
@@ -53,12 +54,13 @@ app.use((req, res, next) => {
   next();
 });
 
+
+app.use("/uploads", express.static("uploads"));
 app.use("/photos", photoRoutes);
 app.use("/", userRoutes); 
 app.get('/', (req, res) => {
-  res.render("index");
+  res.redirect('/photos');
 });
-
 const port = 3000;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

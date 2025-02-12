@@ -1,16 +1,22 @@
 <% layout('layouts/boilerplate') %>
-<h1>Upload New Photo</h1>
 
-<form action="/photos" method="POST">
-  <div>
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required>
-  </div>
-  <div>
-    <label for="Image">Image URL:</label>
-    <input type="text" id="Image" name="Image" required>
-  </div>
-  <button type="submit">Upload Photo</button>
-</form>
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h1 class="mb-4">Upload New Photo</h1>
 
-<a href="/photos">Back to Photos</a>
+    <form action="/photos" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+      </div>
+
+      <button type="submit" class="btn btn-success">Upload Photo</button>
+      <a href="/photos" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</div>
