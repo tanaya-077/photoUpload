@@ -18,9 +18,22 @@ router.get('/', async (req, res) => {
     }
 });
 
+
 // Show form to upload a new photo
 router.get("/new", isLoggedIn, (req, res) => {
     res.render("new");
+});
+
+
+router.get("/:id", async (req, res) => {
+    try {
+        const photo = await Photo.findById(req.params.id).populate("uploadedBy");
+        res.render("show", { photo });
+    } catch (err) {
+        console.error("Error fetching photo:", err);
+        req.flash("error", "Photo not found");
+        res.redirect("/photos");
+    }
 });
 
 // Handle photo upload
@@ -51,6 +64,8 @@ router.post("/", isLoggedIn, upload.single('image'), async (req, res) => {
         res.redirect("/photos/new");
     }
 });
+
+
 
 // Update a photo
 router.put("/:id", isLoggedIn, upload.single('image'), async (req, res) => {

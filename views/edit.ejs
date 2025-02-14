@@ -1,10 +1,11 @@
 <% layout('layouts/boilerplate') %>
-<style>
-h1{
-  color: #4B164C;
-}
 
+<style>
+  h1 {
+    color: #4B164C;
+  }
 </style>
+
 <div class="row">
   <div class="col-md-6 offset-md-3">
     <h1 class="mb-4">Edit Photo</h1>
@@ -24,7 +25,7 @@ h1{
 
       <div class="mb-3">
         <label for="image" class="form-label">Current Image</label>
-        <img src="/photos/<%= photo._id %>/image" class="img-fluid mb-2" alt="<%= photo.title %>">
+        <img src="<%= photo.image.url %>" class="img-fluid mb-2" alt="<%= photo.title %>" style="max-width: 100%;">
         <input 
           type="file" 
           class="form-control" 
